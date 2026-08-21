@@ -2,87 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Trading Demo</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TradeDemo | Demo Trading</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="demo-banner">
-    DEMO MODE — TRAINING ONLY
-</div>
-
-<header>
-    <div class="logo">
-        TradeDemo
+    <div class="demo-banner">
+        DEMO ENVIRONMENT — SIMULATED TRADING ONLY
     </div>
 
-    <div class="status">
-        ● Demo Account
-    </div>
-</header>
 
-<main>
+    <main class="login-page">
 
-    <div class="login-card">
+        <section class="login-card">
 
-        <div class="icon">
-            📈
-        </div>
+            <div class="logo">
+                Trade<span>Demo</span>
+            </div>
 
-        <h1>Trading Demo</h1>
+            <p class="subtitle">
+                Practice trading with a fictional demo account.
+            </p>
 
-        <p class="subtitle">
-            Practice trading in a simulated environment.
-        </p>
 
-        <form id="loginForm">
+            <!-- DEMO CREDENTIALS -->
 
-            <label>Demo Username</label>
+            <div class="demo-credentials">
 
-            <input
-                type="text"
-                id="username"
-                placeholder="demo_user"
-                autocomplete="off"
-                required
-            >
+                <div class="demo-title">
+                    DEMO ACCOUNT
+                </div>
 
-            <label>Demo Password</label>
+                <div class="credential-row">
+                    <span>Username</span>
+                    <strong>demo_user</strong>
+                </div>
 
-            <input
-                type="password"
-                id="password"
-                placeholder="DemoPass123"
-                autocomplete="off"
-                required
-            >
+                <div class="credential-row">
+                    <span>Password</span>
+                    <strong>DemoPass123</strong>
+                </div>
 
-            <button type="submit">
-                Enter Demo
-            </button>
+                <p>
+                    These credentials are fictional and are for
+                    demonstration purposes only.
+                </p>
 
-        </form>
+            </div>
 
-        <div id="message"></div>
 
-        <p class="notice">
-            This is a fictional training environment.
-            Do not enter real Deriv credentials.
-        </p>
+            <!-- LOGIN -->
 
-    </div>
+            <form id="loginForm">
 
-</main>
+                <label for="username">
+                    Demo Username
+                </label>
 
-<footer>
-    Demo trading environment • For educational purposes only
-</footer>
+                <input
+                    type="text"
+                    id="username"
+                    value="demo_user"
+                    autocomplete="off"
+                    required
+                >
 
-<script src="script.js"></script>
+
+                <label for="password">
+                    Demo Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    value="DemoPass123"
+                    autocomplete="off"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                >
+                    Enter Demo Account
+                </button>
+
+            </form>
+
+
+            <div
+                id="message"
+                class="message"
+                aria-live="polite"
+            ></div>
+
+
+            <div class="security-note">
+
+                <strong>Demo only</strong>
+
+                <p>
+                    Do not enter real brokerage or financial
+                    account credentials on this demonstration site.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        TradeDemo · Simulated environment
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>
