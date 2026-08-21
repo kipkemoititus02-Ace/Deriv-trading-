@@ -177,3 +177,168 @@ footer {
     }
 
   }
+
+.demo-banner {
+    background: #d40000;
+    color: #fff;
+    text-align: center;
+    padding: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+.login-page {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    background: #fff;
+    padding: 32px;
+    border-radius: 14px;
+    box-shadow: 0 8px 35px rgba(0,0,0,.10);
+}
+
+.logo {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: #d40000;
+}
+
+.logo span {
+    color: #222;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.demo-credentials {
+    background: #fff8e8;
+    border: 1px solid #efd58e;
+    border-radius: 10px;
+    padding: 17px;
+    margin-bottom: 22px;
+}
+
+.demo-title {
+    color: #765b18;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.credential-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #ead9a9;
+    font-size: 13px;
+}
+
+.credential-row span {
+    color: #777;
+}
+
+.credential-row strong {
+    color: #222;
+}
+
+.demo-credentials p {
+    color: #765b18;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 12px 0 0;
+}
+
+.login-card label {
+    display: block;
+    margin: 14px 0 7px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.login-card input {
+    width: 100%;
+    height: 46px;
+    padding: 0 13px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    outline: none;
+}
+
+.login-card input:focus {
+    border-color: #d40000;
+}
+
+#loginButton {
+    width: 100%;
+    height: 48px;
+    margin-top: 22px;
+    border: 0;
+    border-radius: 7px;
+    background: #d40000;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#loginButton:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.message {
+    min-height: 20px;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.message.success {
+    color: #16803c;
+}
+
+.message.error {
+    color: #d40000;
+}
+
+.message.loading {
+    color: #777;
+}
+
+.security-note {
+    margin-top: 22px;
+    padding: 13px;
+    background: #f6f6f6;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.security-note strong {
+    font-size: 12px;
+}
+
+.security-note p {
+    color: #777;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+footer {
+    text-align: center;
+    color: #888;
+    font-size: 11px;
+    padding: 15px;
+}
