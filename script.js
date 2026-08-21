@@ -1,82 +1,298 @@
-const loginForm = document.getElementById("loginForm");
-const message = document.getElementById("message");
+const DEMO_USERNAME = "demo_user";
+const DEMO_PASSWORD = "DemoPass123";
 
-loginForm.addEventListener("submit", function (event) {
+const loginForm =
+    document.getElementById("loginForm");
 
-    event.preventDefault();
+const usernameInput =
+    document.getElementById("username");
+
+const passwordInput =
+    document.getElementById("password");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const message =
+    document.getElementById("message");
+
+
+/*
+==================================================
+DISPLAY MESSAGE
+==================================================
+*/
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+/*
+==================================================
+CREATE DEMO ACCOUNT
+==================================================
+
+The server stores only a password hash.
+The actual demo password is never stored
+as plain text in PostgreSQL.
+==================================================
+*/
+
+async function createDemoAccount() {
+
+    try {
+
+        const response = await fetch(
+            "/api/demo-user",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    username:
+                        DEMO_USERNAME,
+
+                    password:
+                        DEMO_PASSWORD
+
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            console.error(
+                "Demo account setup failed:",
+                data
+            );
+
+            return false;
+        }
+
+
+        console.log(
+            "Demo account ready."
+        );
+
+        return true;
+
+
+    } catch (error) {
+
+        console.error(
+            "Unable to connect to demo server:",
+            error
+        );
+
+        return false;
+    }
+}
+
+
+/*
+==================================================
+DEMO LOGIN
+==================================================
+*/
+
+async function loginDemoAccount() {
 
     const username =
-        document.getElementById("username").value.trim();
+        usernameInput.value.trim();
 
     const password =
-        document.getElementById("password").value.trim();
+        passwordInput.value;
 
-    message.textContent = "";
 
     if (!username || !password) {
 
-        message.textContent =
-            "Please enter your demo credentials.";
-
-        message.style.color = "#d40000";
+        showMessage(
+            "Enter the demo username and password.",
+            "error"
+        );
 
         return;
     }
 
 
-    /*
-     * DEMO / TRAINING LOGIN ONLY
-     *
-     * These are fictional credentials.
-     *
-     * Do NOT enter real Deriv credentials.
-     */
+    loginButton.disabled = true;
 
-    const demoUsername = "demo_user";
-
-    const demoPassword = "DemoPass123";
+    loginButton.textContent =
+        "Connecting...";
 
 
-    if (
-        username === demoUsername &&
-        password === demoPassword
-    ) {
+    showMessage(
+        "Checking demo account...",
+        "loading"
+    );
 
-        message.textContent =
-            "Demo login successful.";
 
-        message.style.color =
-            "#16803c";
+    try {
 
+        const response = await fetch(
+            "/api/demo-login",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    username,
+                    password
+
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            showMessage(
+                data.message ||
+                "Invalid demo login.",
+                "error"
+            );
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Enter Demo Account";
+
+            return;
+        }
+
+
+        /*
+        Store only non-sensitive demo
+        session information.
+        */
 
         sessionStorage.setItem(
             "demoLoggedIn",
             "true"
         );
 
-
         sessionStorage.setItem(
             "demoUsername",
-            username
+            data.user.username
         );
 
 
-        setTimeout(function () {
+        showMessage(
+            "Demo login successful. Opening dashboard...",
+            "success"
+        );
+
+
+        setTimeout(() => {
 
             window.location.href =
-                "dashboard.html";
+                "/dashboard";
 
         }, 700);
 
 
-    } else {
+    } catch (error) {
 
-        message.textContent =
-            "Invalid demo credentials.";
+        console.error(error);
 
-        message.style.color =
-            "#d40000";
+        showMessage(
+            "Unable to connect to the demo server.",
+            "error"
+        );
+
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+            "Enter Demo Account";
+    }
+}
+
+
+/*
+==================================================
+FORM SUBMISSION
+==================================================
+*/
+
+loginForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+        loginDemoAccount();
 
     }
+);
 
-});
+
+/*
+==================================================
+INITIALIZE DEMO ACCOUNT
+==================================================
+*/
+
+async function initializeDemo() {
+
+    usernameInput.value =
+        DEMO_USERNAME;
+
+    passwordInput.value =
+        DEMO_PASSWORD;
+
+
+    showMessage(
+        "Preparing demo account...",
+        "loading"
+    );
+
+
+    const ready =
+        await createDemoAccount();
+
+
+    if (ready) {
+
+        showMessage(
+            "Demo account ready.",
+            "success"
+        );
+
+    } else {
+
+        showMessage(
+            "Demo server unavailable.",
+            "error"
+        );
+
+    }
+}
+
+
+initializeDemo();
