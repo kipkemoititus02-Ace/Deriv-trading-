@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TradeDemo | Demo Trading Dashboard</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+
+<div class="demo-banner">
+    DEMO MODE • TRAINING ONLY • NO REAL MONEY
+</div>
+
+
+<header>
+
+    <div class="brand">
+        TradeDemo
+    </div>
+
+    <div class="account">
+
+        <span class="demo-dot"></span>
+
+        <span>Demo Account</span>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <div>
+
+            <h1>Trading Dashboard</h1>
+
+            <p id="welcomeText">
+                Welcome back, demo trader.
+            </p>
+
+        </div>
+
+
+        <div class="balance-card">
+
+            <span>Demo Balance</span>
+
+            <strong>$10,000.00</strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <span>Available Balance</span>
+
+            <strong>$10,000.00</strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>Open Trades</span>
+
+            <strong id="openTrades">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>Today's P/L</span>
+
+            <strong id="profitLoss">
+                $0.00
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- TRADING AREA -->
+
+    <section class="trading-area">
+
+
+        <!-- MARKET -->
+
+        <div class="market-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="small-label">
+                        MARKET
+                    </span>
+
+                    <h2>
+                        Volatility 100 Index
+                    </h2>
+
+                </div>
+
+
+                <span class="market-status">
+                    ● DEMO LIVE
+                </span>
+
+            </div>
+
+
+
+            <div class="price">
+
+                <span id="price">
+                    10,245.60
+                </span>
+
+                <small id="change">
+                    +0.00%
+                </small>
+
+            </div>
+
+
+
+            <!-- DEMO CHART -->
+
+            <div class="chart">
+
+                <div class="chart-grid"></div>
+
+                <svg
+                    viewBox="0 0 800 300"
+                    preserveAspectRatio="none"
+                    class="chart-svg"
+                >
+
+                    <polyline
+                        id="priceLine"
+                        points="
+                        0,220
+                        80,190
+                        150,210
+                        220,150
+                        300,170
+                        370,110
+                        450,135
+                        520,80
+                        600,105
+                        680,60
+                        800,85
+                        "
+                    />
+
+                </svg>
+
+
+                <div class="chart-label">
+                    Simulated market data
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- TRADE PANEL -->
+
+        <div class="trade-card">
+
+
+            <h2>
+                Demo Trade
+            </h2>
+
+
+            <p class="trade-note">
+                Practice trading using simulated funds.
+            </p>
+
+
+
+            <label>
+                Asset
+            </label>
+
+
+            <select id="asset">
+
+                <option>
+                    Volatility 100 Index
+                </option>
+
+                <option>
+                    Volatility 75 Index
+                </option>
+
+                <option>
+                    Volatility 50 Index
+                </option>
+
+                <option>
+                    Volatility 25 Index
+                </option>
+
+            </select>
+
+
+
+            <label>
+                Stake
+            </label>
+
+
+            <input
+                type="number"
+                id="stake"
+                value="10"
+                min="1"
+                max="1000"
+            >
+
+
+
+            <label>
+                Duration
+            </label>
+
+
+            <select id="duration">
+
+                <option>
+                    1 Minute
+                </option>
+
+                <option>
+                    5 Minutes
+                </option>
+
+                <option>
+                    15 Minutes
+                </option>
+
+                <option>
+                    30 Minutes
+                </option>
+
+            </select>
+
+
+
+            <div class="trade-buttons">
+
+
+                <button
+                    class="up"
+                    onclick="demoTrade('UP')"
+                >
+                    UP
+                </button>
+
+
+                <button
+                    class="down"
+                    onclick="demoTrade('DOWN')"
+                >
+                    DOWN
+                </button>
+
+
+            </div>
+
+
+
+            <div id="tradeMessage"></div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- TRADE HISTORY -->
+
+    <section class="history">
+
+
+        <div class="history-header">
+
+            <div>
+
+                <h2>
+                    Demo Trade History
+                </h2>
+
+                <p>
+                    Simulated transactions
+                </p>
+
+            </div>
+
+
+            <span class="history-badge">
+                DEMO
+            </span>
+
+        </div>
+
+
+
+        <div
+            id="historyContainer"
+            class="empty"
+        >
+
+            <div class="empty-icon">
+                📊
+            </div>
+
+            <h3>
+                No trades yet
+            </h3>
+
+            <p>
+                Your simulated trades will appear here.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- DEMO NOTICE -->
+
+    <section class="demo-notice">
+
+        <strong>
+            ⚠ DEMO / TRAINING ENVIRONMENT
+        </strong>
+
+        <p>
+            This website is a fictional trading simulator.
+            All balances, prices, trades and account information
+            shown here are simulated and have no monetary value.
+        </p>
+
+    </section>
+
+
+</main>
+
+
+
+<footer>
+
+    TradeDemo • Educational Trading Simulator
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================
+   DEMO LOGIN PROTECTION
+========================================= */
+
+if (
+    sessionStorage.getItem("demoLoggedIn")
+    !== "true"
+) {
+
+    window.location.href = "index.html";
+
+}
+
+
+
+/* =========================================
+   DISPLAY DEMO USERNAME
+========================================= */
+
+const username =
+    sessionStorage.getItem("demoUsername");
+
+const welcomeText =
+    document.getElementById("welcomeText");
+
+
+if (username) {
+
+    welcomeText.textContent =
+        "Welcome back, " + username + ".";
+
+}
+
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "demoLoggedIn"
+    );
+
+    sessionStorage.removeItem(
+        "demoUsername"
+    );
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+
+/* =========================================
+   DEMO PRICE SIMULATION
+========================================= */
+
+let currentPrice = 10245.60;
+
+
+function updatePrice() {
+
+    const movement =
+        (Math.random() - 0.5) * 20;
+
+    currentPrice += movement;
+
+
+    if (currentPrice < 10000) {
+        currentPrice = 10000;
+    }
+
+
+    document.getElementById(
+        "price"
+    ).textContent =
+        currentPrice.toLocaleString(
+            undefined,
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
+
+
+    const percentage =
+        ((currentPrice - 10245.60)
+        / 10245.60) * 100;
+
+
+    const change =
+        document.getElementById(
+            "change"
+        );
+
+
+    change.textContent =
+        (percentage >= 0 ? "+" : "")
+        + percentage.toFixed(2)
+        + "%";
+
+
+    if (percentage >= 0) {
+
+        change.style.color =
+            "#16803c";
+
+    } else {
+
+        change.style.color =
+            "#d40000";
+
+    }
+
+}
+
+
+setInterval(
+    updatePrice,
+    2000
+);
+
+
+
+/* =========================================
+   DEMO TRADING
+========================================= */
+
+let tradeCount = 0;
+
+let demoProfit = 0;
+
+
+function demoTrade(direction) {
+
+
+    const stakeInput =
+        document.getElementById(
+            "stake"
+        );
+
+
+    const stake =
+        Number(stakeInput.value);
+
+
+    if (
+        !stake ||
+        stake <= 0
+    ) {
+
+        showTradeMessage(
+            "Enter a valid demo stake.",
+            "#d40000"
+        );
+
+        return;
+
+    }
+
+
+    if (stake > 1000) {
+
+        showTradeMessage(
+            "Maximum demo stake is $1,000.",
+            "#d40000"
+        );
+
+        return;
+
+    }
+
+
+    const asset =
+        document.getElementById(
+            "asset"
+        ).value;
+
+
+    const duration =
+        document.getElementById(
+            "duration"
+        ).value;
+
+
+    tradeCount++;
+
+
+    document.getElementById(
+        "openTrades"
+    ).textContent =
+        tradeCount;
+
+
+
+    /*
+       Simulated result only.
+    */
+
+    const simulatedResult =
+        (Math.random() - 0.5)
+        * stake
+        * 0.4;
+
+
+    demoProfit +=
+        simulatedResult;
+
+
+    document.getElementById(
+        "profitLoss"
+    ).textContent =
+        (demoProfit >= 0 ? "+" : "")
+        + "$"
+        + Math.abs(
+            demoProfit
+        ).toFixed(2);
+
+
+    addTradeToHistory(
+        direction,
+        asset,
+        duration,
+        stake,
+        simulatedResult
+    );
+
+
+    showTradeMessage(
+        "Demo " +
+        direction +
+        " trade placed successfully.",
+        "#16803c"
+    );
+
+}
+
+
+
+/* =========================================
+   TRADE MESSAGE
+========================================= */
+
+function showTradeMessage(
+    text,
+    color
+) {
+
+    const message =
+        document.getElementById(
+            "tradeMessage"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.style.color =
+        color;
+
+
+    setTimeout(
+        function () {
+
+            message.textContent = "";
+
+        },
+        3000
+    );
+
+}
+
+
+
+/* =========================================
+   TRADE HISTORY
+========================================= */
+
+function addTradeToHistory(
+    direction,
+    asset,
+    duration,
+    stake,
+    result
+) {
+
+
+    const container =
+        document.getElementById(
+            "historyContainer"
+        );
+
+
+    if (
+        container.classList.contains(
+            "empty"
+        )
+    ) {
+
+        container.classList.remove(
+            "empty"
+        );
+
+        container.innerHTML = "";
+
+    }
+
+
+    const trade =
+        document.createElement(
+            "div"
+        );
+
+
+    trade.className =
+        "history-row";
+
+
+    const resultText =
+        result >= 0
+        ? "+$" + result.toFixed(2)
+        : "-$" + Math.abs(result).toFixed(2);
+
+
+    const resultClass =
+        result >= 0
+        ? "profit"
+        : "loss";
+
+
+    trade.innerHTML = `
+
+        <div>
+
+            <strong>
+                ${direction}
+            </strong>
+
+            <span>
+                ${asset}
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                ${duration}
+            </span>
+
+            <span>
+                Stake: $${stake.toFixed(2)}
+            </span>
+
+        </div>
+
+
+        <strong
+            class="${resultClass}"
+        >
+            ${resultText}
+        </strong>
+
+    `;
+
+
+    container.prepend(
+        trade
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
