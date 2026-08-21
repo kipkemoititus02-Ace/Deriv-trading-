@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trading Demo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="demo-banner">
+    DEMO MODE — TRAINING ONLY
+</div>
+
+<header>
+    <div class="logo">
+        TradeDemo
+    </div>
+
+    <div class="status">
+        ● Demo Account
+    </div>
+</header>
+
+<main>
+
+    <div class="login-card">
+
+        <div class="icon">
+            📈
+        </div>
+
+        <h1>Trading Demo</h1>
+
+        <p class="subtitle">
+            Practice trading in a simulated environment.
+        </p>
+
+        <form id="loginForm">
+
+            <label>Demo Username</label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="demo_user"
+                autocomplete="off"
+                required
+            >
+
+            <label>Demo Password</label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="DemoPass123"
+                autocomplete="off"
+                required
+            >
+
+            <button type="submit">
+                Enter Demo
+            </button>
+
+        </form>
+
+        <div id="message"></div>
+
+        <p class="notice">
+            This is a fictional training environment.
+            Do not enter real Deriv credentials.
+        </p>
+
+    </div>
+
+</main>
+
+<footer>
+    Demo trading environment • For educational purposes only
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
