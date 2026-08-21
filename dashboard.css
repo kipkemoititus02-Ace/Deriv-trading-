@@ -1,0 +1,713 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    color: #1f1f1f;
+}
+
+/* DEMO BANNER */
+
+.demo-banner {
+    background: #d40000;
+    color: #fff;
+    text-align: center;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* HEADER */
+
+header {
+    height: 70px;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+}
+
+.brand {
+    color: #d40000;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #555;
+    font-size: 14px;
+}
+
+.demo-dot {
+    width: 9px;
+    height: 9px;
+
+    background: #16803c;
+    border-radius: 50%;
+}
+
+.account button {
+    margin-left: 12px;
+
+    padding: 8px 15px;
+
+    background: #fff;
+    color: #333;
+
+    border: 1px solid #ddd;
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+.account button:hover {
+    background: #f5f5f5;
+}
+
+
+/* MAIN */
+
+main {
+    width: 90%;
+    max-width: 1250px;
+
+    margin: 30px auto;
+}
+
+
+/* WELCOME */
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    font-size: 30px;
+    margin-bottom: 7px;
+}
+
+.welcome p {
+    color: #777;
+}
+
+
+/* BALANCE */
+
+.balance-card {
+    min-width: 230px;
+
+    background: #111;
+    color: #fff;
+
+    padding: 19px 25px;
+
+    border-radius: 11px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.balance-card span {
+    display: block;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.balance-card strong {
+    font-size: 26px;
+}
+
+
+/* STATISTICS */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: #fff;
+
+    padding: 21px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 11px;
+}
+
+.stat-card span {
+    color: #777;
+
+    font-size: 13px;
+}
+
+.stat-card strong {
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 23px;
+}
+
+
+/* TRADING AREA */
+
+.trading-area {
+    display: grid;
+
+    grid-template-columns:
+        1.6fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* CARDS */
+
+.market-card,
+.trade-card,
+.history {
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+}
+
+
+/* MARKET */
+
+.market-card {
+    padding: 25px;
+}
+
+.card-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.small-label {
+    color: #999;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.card-header h2 {
+    font-size: 20px;
+
+    margin-top: 5px;
+}
+
+.market-status {
+    color: #16803c;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* PRICE */
+
+.price {
+    margin-top: 30px;
+}
+
+.price span {
+    font-size: 35px;
+
+    font-weight: 700;
+}
+
+.price small {
+    margin-left: 10px;
+
+    color: #16803c;
+
+    font-weight: 700;
+}
+
+
+/* CHART */
+
+.chart {
+    height: 280px;
+
+    margin-top: 20px;
+
+    background: #fafafa;
+
+    border: 1px solid #eee;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.chart-grid {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            #e9e9e9 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            #e9e9e9 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+}
+
+.chart-svg {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.chart-svg polyline {
+    fill: none;
+
+    stroke: #d40000;
+
+    stroke-width: 4;
+
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.chart-label {
+    position: absolute;
+
+    right: 12px;
+    bottom: 10px;
+
+    padding: 5px 8px;
+
+    background: rgba(255,255,255,.9);
+
+    border-radius: 5px;
+
+    color: #888;
+
+    font-size: 10px;
+}
+
+
+/* TRADE CARD */
+
+.trade-card {
+    padding: 25px;
+}
+
+.trade-card h2 {
+    margin-bottom: 6px;
+}
+
+.trade-note {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+
+/* FORM */
+
+.trade-card label {
+    display: block;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    margin: 15px 0 7px;
+}
+
+.trade-card select,
+.trade-card input {
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    background: #fff;
+
+    outline: none;
+}
+
+.trade-card select:focus,
+.trade-card input:focus {
+    border-color: #d40000;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212,0,0,.08);
+}
+
+
+/* TRADE BUTTONS */
+
+.trade-buttons {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.trade-buttons button {
+    height: 48px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    color: #fff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.trade-buttons button:hover {
+    transform: translateY(-1px);
+}
+
+.up {
+    background: #16803c;
+}
+
+.up:hover {
+    background: #116b31;
+}
+
+.down {
+    background: #d40000;
+}
+
+.down:hover {
+    background: #b80000;
+}
+
+
+/* TRADE MESSAGE */
+
+#tradeMessage {
+    min-height: 18px;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* HISTORY */
+
+.history {
+    margin-top: 20px;
+
+    padding: 25px;
+}
+
+.history-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.history-header h2 {
+    font-size: 20px;
+}
+
+.history-header p {
+    color: #888;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+.history-badge {
+    background: #fff0f0;
+
+    color: #d40000;
+
+    padding: 6px 10px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* EMPTY HISTORY */
+
+.empty {
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: #777;
+}
+
+.empty-icon {
+    font-size: 35px;
+
+    margin-bottom: 12px;
+}
+
+.empty h3 {
+    color: #333;
+
+    margin-bottom: 7px;
+}
+
+
+/* HISTORY ROW */
+
+.history-row {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 16px 5px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.history-row:last-child {
+    border-bottom: none;
+}
+
+.history-row div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.history-row span {
+    color: #888;
+
+    font-size: 12px;
+}
+
+.history-row strong {
+    font-size: 13px;
+}
+
+.history-row .profit {
+    color: #16803c;
+}
+
+.history-row .loss {
+    color: #d40000;
+}
+
+
+/* DEMO NOTICE */
+
+.demo-notice {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: #fff8e8;
+
+    border: 1px solid #f0d99a;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.demo-notice strong {
+    color: #765b18;
+
+    font-size: 13px;
+}
+
+.demo-notice p {
+    margin-top: 7px;
+
+    color: #765b18;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+/* TABLET */
+
+@media (max-width: 850px) {
+
+    .trading-area {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    header {
+        height: 65px;
+
+        padding: 0 18px;
+    }
+
+    .brand {
+        font-size: 21px;
+    }
+
+    .account {
+        font-size: 11px;
+    }
+
+    .account button {
+        padding: 7px 9px;
+
+        margin-left: 3px;
+    }
+
+    main {
+        width: 94%;
+
+        margin-top: 20px;
+    }
+
+    .welcome {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .welcome h1 {
+        font-size: 25px;
+    }
+
+    .balance-card {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .market-card,
+    .trade-card,
+    .history {
+        padding: 18px;
+    }
+
+    .card-header {
+        align-items: flex-start;
+    }
+
+    .card-header h2 {
+        font-size: 17px;
+    }
+
+    .price span {
+        font-size: 28px;
+    }
+
+    .chart {
+        height: 220px;
+    }
+
+    .history-row {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .history-row > strong {
+        text-align: left;
+    }
+
+  }
